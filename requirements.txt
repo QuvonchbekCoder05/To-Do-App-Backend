@@ -1,0 +1,52 @@
+# Django asosiy framework
+Django
+
+
+
+# Django Rest Framework uchun
+djangorestframework
+
+# JWT uchun autentifikatsiya kutubxonasi
+djangorestframework-simplejwt
+
+# Filtr va qidiruv imkoniyatlari uchun
+django-filter
+
+# API hujjatlari uchun Swagger va Redoc (drf-yasg)
+drf-yasg
+
+# PostgreSQL driver
+psycopg2
+
+# Xavfsizlik uchun CSP (Content Security Policy) o'rnatish
+django-csp
+
+# Kod formatlash uchun
+black
+flake8
+
+# Muhit o'zgaruvchilarini boshqarish uchun
+python-dotenv
+
+# Django extensions (versiyasi yangilanadi)
+django-extensions
+
+# Statik fayllarni boshqarish (production holat uchun)
+whitenoise
+
+# Redis va cache uchun
+django-redis
+redis
+
+# Test yozish uchun
+pytest
+pytest-django
+
+
+django-environ==0.11.2
+
+pillow==10.4.0
+
+pre-commit==3.7.1
+ruff==0.5.4
+django-debug-toolbar==4.4.6
