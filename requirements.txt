@@ -24,6 +24,8 @@ django-csp
 # Kod formatlash uchun
 black
 flake8
+pre-commit
+ruff
 
 # Muhit o'zgaruvchilarini boshqarish uchun
 python-dotenv
