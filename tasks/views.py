@@ -1,24 +1,30 @@
-# views.py
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 from django.utils import timezone
 from .models import Task, SpecialTask
 from .serializers import TaskSerializer, SpecialTaskSerializer
 
-class TaskViewSet(viewsets.ModelViewSet): #Foydalanuvchilar uchun vazifalar ustida ishlash imkoniyatini beruvchi viewset yaratib olgan qismim
+class TaskViewSet(viewsets.ModelViewSet):
     serializer_class = TaskSerializer
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        filter_param = self.request.query_params.get('filter')# URL dan filtr parametrini olamiz 
-        user = self.request.user  # Hozirgi foydalanuvchini olamiz 
-        if filter_param == 'daily': # Agar "daily" filtri bo'lsa
-            return Task.objects.filter(user=user, due_date=timezone.now().date()) # Bugungi vazifalar qaytaramiz qolganlari ham shu ketma ketlikda boladi
+        user = self.request.user
+        filter_param = self.request.query_params.get('filter')
+
+        if filter_param == 'daily':
+            due_date_filter = timezone.now().date()
         elif filter_param == 'weekly':
-            return Task.objects.filter(user=user, due_date__week=timezone.now().isocalendar()[1])
+            due_date_filter = timezone.now().isocalendar()[1]
         elif filter_param == 'monthly':
-            return Task.objects.filter(user=user, due_date__month=timezone.now().month)
-        return Task.objects.filter(user=user)
+            due_date_filter = timezone.now().month
+        else:
+            due_date_filter = None
+
+        if due_date_filter:
+            return Task.objects.filter(user=user, due_date=due_date_filter)
+        else:
+            return Task.objects.filter(user=user)
 
 
 class SpecialTaskViewSet(viewsets.ModelViewSet):
