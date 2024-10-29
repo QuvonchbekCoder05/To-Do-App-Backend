@@ -38,9 +38,12 @@ EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=20),
     'REFRESH_TOKEN_LIFETIME': timedelta(minutes=10),
-    'AUTH_TOKEN_CLASSES':('rest_framework_simplejwt.tokens.AccessToken')
+    # 'AUTH_TOKEN_CLASSES':('rest_framework_simplejwt.tokens.AccessToken', )
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
 REST_FRAMEWORK = {

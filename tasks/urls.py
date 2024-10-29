@@ -1,11 +1,13 @@
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from .views import TaskViewSet, SpecialTaskViewSet
-
-router = DefaultRouter()
-router.register(r'tasks', TaskViewSet, basename='task')
-router.register(r'special-tasks', SpecialTaskViewSet, basename='special-task')
+from django.urls import path
+from .views import TaskAPIView, SpecialTaskAPIView
 
 urlpatterns = [
-    path('', include(router.urls)),
+    
+    # Task API yo'llari
+    path('tasks/', TaskAPIView.as_view(), name='task_list_create'),  # GET va POST uchun
+    path('tasks/<int:pk>/', TaskAPIView.as_view(), name='task_update_delete'),  # PUT va DELETE uchun
+
+    # SpecialTask API yo'llari
+    path('special-tasks/', SpecialTaskAPIView.as_view(), name='special_task_list_create'),  # GET va POST uchun
+    path('special-tasks/<int:pk>/', SpecialTaskAPIView.as_view(), name='special_task_update_delete'),  # PUT va DELETE uchun
 ]

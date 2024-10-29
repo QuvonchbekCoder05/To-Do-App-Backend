@@ -8,13 +8,17 @@ class BaseTaskSerializer(serializers.ModelSerializer):
         
 
 class TaskSerializer(BaseTaskSerializer):
+    user = serializers.StringRelatedField()  
     """Oddiy Task uchun serializer."""
     class Meta(BaseTaskSerializer.Meta):
         model = Task
         fields = BaseTaskSerializer.Meta.fields + ['due_date']
+        read_only_fields = ['user']
 
 class SpecialTaskSerializer(BaseTaskSerializer):
+    user = serializers.StringRelatedField() 
     """Special Task uchun serializer."""
     class Meta(BaseTaskSerializer.Meta):
         model = SpecialTask
         fields = BaseTaskSerializer.Meta.fields + ['special_date']
+        read_only_fields = ['user']

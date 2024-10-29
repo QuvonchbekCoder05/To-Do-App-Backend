@@ -14,11 +14,11 @@ class CustomUserManager(BaseUserManager):# Foydalanuvchilar modelini boshqarish 
         user.save()
         return user
 
-    def create_superuser(self, email, user_name, password=None, **other_fields): #Admin huquqlariga ega superfoydalanuvchini yaratish
+    def create_superuser(self, email, username, password=None, **other_fields): #Admin huquqlariga ega superfoydalanuvchini yaratish
         other_fields.setdefault('is_staff', True) # Superuser uchun is_staff ni True ga o'rnatib qoyamiz 
         other_fields.setdefault('is_superuser', True)  # Superuser uchun is_superuserni ham truega ornatib qoyamiz admin bolishi uchun
         other_fields.setdefault('is_active', True)# Superuser  faolligini ta'minlashni amslhs odhiramiz 
-        return self.create_user(email, user_name, password, **other_fields)
+        return self.create_user(email, username, password, **other_fields)
 
 class User(AbstractBaseUser, PermissionsMixin): #  AbstractBaseUser va PermissionsMixin'dan meros oladigan moslashtirilgan foydalanuvchi modelini yaratib olamiz 
     email = models.EmailField(unique=True)
