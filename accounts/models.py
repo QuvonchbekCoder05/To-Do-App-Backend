@@ -4,7 +4,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 from django.db import models
 from django.utils import timezone
 
-class CustomUserManager(BaseUserManager):# Foydalanuvchilar modelini boshqarish uchun moslashtirilgan foydalanuvchi menejeri.
+class CustomUserManager(BaseUserManager):# Foydalanuvchilar modelini boshqarish.
     def create_user(self, email, username, password=None, **other_fields):
         if not email:
             raise ValueError("Provide email") # # Emailning mavjudligini tekshirib olamiz 
