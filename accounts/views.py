@@ -86,10 +86,11 @@ class SignInView(APIView):
             password = serializer.validated_data['password']
             user = authenticate(request, username=email, password=password)
             if user:
-                refresh = RefreshToken.for_user(user)
+                # Faqat access tokenni qaytaradiganq ilingan
+                access_token = RefreshToken.for_user(user).access_token
                 return Response({
-                    'refresh': str(refresh),
-                    'access': str(refresh.access_token),
+                    'access': str(access_token),
+                    'message': 'Sizning task yaratish uchun talab qilinadigan access tokeningiz',
                 }, status=status.HTTP_200_OK)
             return Response({'detail': 'Noto‘g‘ri email yoki parol!'}, status=status.HTTP_401_UNAUTHORIZED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
