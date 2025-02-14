@@ -1,0 +1,22 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace  # 🚀 Bo‘sh joylarni olib tashlaydi
+      - id: end-of-file-fixer  # 🚀 Fayl oxirida bitta bo‘sh qator qolishiga ishonch hosil qiladi
+      - id: check-yaml  # 🚀 YAML fayllarini tekshiradi
+
+  - repo: https://github.com/psf/black
+    rev: 23.12.1
+    hooks:
+      - id: black  # 🚀 Kodni avtomatik formatlaydi
+
+  - repo: https://github.com/pycqa/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort  # 🚀 Importlarni avtomatik tartiblaydi
+
+  - repo: https://github.com/charliermarsh/ruff-pre-commit
+    rev: v0.1.8
+    hooks:
+      - id: ruff  # 🚀 Kodni avtomatik lint qiladi
